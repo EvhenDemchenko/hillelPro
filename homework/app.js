@@ -3,11 +3,20 @@ document.querySelector('.btn1').addEventListener('click', () => {
 });
 
 function taskOne() {
-    let number;
+    let inputValue;
     for (let i = 0; i < 10; i++) {
-        number = +prompt('enter number > 100 : ');
-        if (number > 100) return number;
+        inputValue = prompt('enter value > 100');
+        if (inputValue > 100) {
+            return inputValue;
+        } else if (inputValue < 100) {
+            if (i === 9) {
+                return inputValue;
+            } else {
+                continue;
+            }
+        } else {
+            return inputValue;
+        }
     }
-    console.log('все числа были меньше 100');
 }
 
