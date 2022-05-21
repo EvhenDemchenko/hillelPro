@@ -12,20 +12,40 @@ const Alex = new Man('Alex', 22)
 Alex.getInfo();
 
 
-function Car(engine, seats, runAndDrive, owner = null) {
+function Car(engine, seats, runAndDrive, owner) {
     this.engine = engine;
     this.seats = seats;
     this.runAndDrive = runAndDrive;
-    this.owner = owner;
+    this.owner = 'no owner';
 
     this.aboutCar = function () {
-        console.log(`engine is ${this.engine}\n, number of seats ${this.seats}\n, condition ${runAndDrive}`);
+        if (typeof this.owner === "object"){
+            console.log(` 
+            1 : engine model is  ${this.engine}
+            2 : number of seats  is ${this.seats} 
+            3 : runAndDrive is  ${this.runAndDrive} 
+            4 : owner is  ${this.owner.name} and he is ${this.owner.age};
+            `);
+        }else {
+            console.log(` 
+            1 : engine model is  ${this.engine}
+            2 : number of seats  is ${this.seats}
+            3 : runAndDrive is  ${this.runAndDrive}`);
+        }
     }
-    this.owner  = function () {
-        console.log('my car is ',this.name, this.age )
+    this.setOwner = function (Name, Age) {
+        if (Name === '' || Age < 18) {
+            return false
+        } else {
+            this.owner = {
+                name: Name,
+                age: Age,
+            }
+        }
     }
 }
-const toyota = new Car('4efe' , 4 , true , Alex );
-toyota.aboutCar();
-toyota.owner.bind(Alex)();
 
+const xyndai = new Car('g4kj', 4, false);
+xyndai.setOwner('Yevhen' , 25);
+// console.log(xyndai);
+xyndai.aboutCar();
