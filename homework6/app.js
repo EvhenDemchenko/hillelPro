@@ -8,7 +8,7 @@ function Man(name, age) {
 }
 
 
-const Alex = new Man('Alex', 22)
+const Alex = new Man('Alex', 22);
 Alex.getInfo();
 
 
@@ -19,14 +19,14 @@ function Car(engine, seats, runAndDrive, owner) {
     this.owner = 'no owner';
 
     this.aboutCar = function () {
-        if (typeof this.owner === "object"){
+        if (typeof this.owner === "object") {
             console.log(` 
             1 : engine model is  ${this.engine}
             2 : number of seats  is ${this.seats} 
             3 : runAndDrive is  ${this.runAndDrive} 
             4 : owner is  ${this.owner.name} and he is ${this.owner.age};
             `);
-        }else {
+        } else {
             console.log(` 
             1 : engine model is  ${this.engine}
             2 : number of seats  is ${this.seats}
@@ -34,7 +34,7 @@ function Car(engine, seats, runAndDrive, owner) {
         }
     }
     this.setOwner = function (Name, Age) {
-        if (Name === '' || Age < 18) {
+        if (Name === '' || Age < 18 || Age > 100) {
             return false
         } else {
             this.owner = {
@@ -45,7 +45,6 @@ function Car(engine, seats, runAndDrive, owner) {
     }
 }
 
-const xyndai = new Car('g4kj', 4, false);
-xyndai.setOwner('Yevhen' , 25);
-// console.log(xyndai);
-xyndai.aboutCar();
+const hyundai = new Car('g4kj', 4, false);
+hyundai.setOwner('Yevhen',22 );
+hyundai.aboutCar();
