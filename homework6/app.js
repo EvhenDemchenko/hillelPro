@@ -8,43 +8,43 @@ function Man(name, age) {
 }
 
 
-const Alex = new Man('Alex', 22);
-Alex.getInfo();
+document.querySelector('.btn1').addEventListener('click', () => {
+    const Alex = new Man(prompt('enter name'), prompt('enter age'));
+    Alex.getInfo();
+});
 
+document.querySelector('.btn').addEventListener('click', () => {
+    const hyundai = new Car(prompt('enter engine version'), prompt('enter seats count'), prompt('is your car work?'));
+    hyundai.setOwner(prompt('owner name'), +prompt('owner age'));
+    hyundai.aboutCar();
+})
 
-function Car(engine, seats, runAndDrive, owner) {
+function Car(engine, seats, runAndDrive,) {
     this.engine = engine;
     this.seats = seats;
     this.runAndDrive = runAndDrive;
-    this.owner = 'no owner';
 
     this.aboutCar = function () {
-        if (typeof this.owner === "object") {
-            console.log(` 
+        console.group(`
             1 : engine model is  ${this.engine}
             2 : number of seats  is ${this.seats} 
-            3 : runAndDrive is  ${this.runAndDrive} 
-            4 : owner is  ${this.owner.name} and he is ${this.owner.age};
-            `);
-        } else {
+            3 : runAndDrive is  ${this.runAndDrive} `)
+        if (typeof this.owner === "object") {
             console.log(` 
-            1 : engine model is  ${this.engine}
-            2 : number of seats  is ${this.seats}
-            3 : runAndDrive is  ${this.runAndDrive}`);
+                4 : owner is  ${this.owner.name} and he is ${this.owner.age};
+            `);
         }
     }
-    this.setOwner = function (Name, Age) {
-        if (Name === '' || Age < 18 || Age > 100) {
+
+    this.setOwner = function (name, age) {
+        if (name === '' || age < 18 || age > 100) {
             return false
         } else {
             this.owner = {
-                name: Name,
-                age: Age,
+                name: name,
+                age: age,
             }
         }
     }
 }
 
-const hyundai = new Car('g4kj', 4, false);
-hyundai.setOwner('Yevhen',22 );
-hyundai.aboutCar();
