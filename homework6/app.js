@@ -1,3 +1,4 @@
+// person constructor
 function Man(name, age) {
     this.name = name;
     this.age = age;
@@ -6,45 +7,53 @@ function Man(name, age) {
         console.log(this.name, this.age);
     }
 }
+// creating person
+function  getPerson (){
+    const Alex = new Man('Alex', 22);
+    return Alex;
+}
 
-
-document.querySelector('.btn1').addEventListener('click', () => {
-    const Alex = new Man(prompt('enter name'), prompt('enter age'));
-    Alex.getInfo();
-});
-
-document.querySelector('.btn').addEventListener('click', () => {
-    const hyundai = new Car(prompt('enter engine version'), prompt('enter seats count'), prompt('is your car work?'));
-    hyundai.setOwner(prompt('owner name'), +prompt('owner age'));
-    hyundai.aboutCar();
-})
-
+// car constructor
 function Car(engine, seats, runAndDrive,) {
     this.engine = engine;
     this.seats = seats;
     this.runAndDrive = runAndDrive;
 
     this.aboutCar = function () {
-        console.group(`
+        const info = `
             1 : engine model is  ${this.engine}
             2 : number of seats  is ${this.seats} 
-            3 : runAndDrive is  ${this.runAndDrive} `)
+            3 : runAndDrive is  ${this.runAndDrive}`;
         if (typeof this.owner === "object") {
-            console.log(` 
-                4 : owner is  ${this.owner.name} and he is ${this.owner.age};
-            `);
+            console.group(`
+            ${info}
+            4 : owner is  ${this.owner.name} 
+            and he is ${this.owner.age};
+            `)
+        } else {
+            console.log(info);
         }
     }
 
-    this.setOwner = function (name, age) {
-        if (name === '' || age < 18 || age > 100) {
-            return false
+    this.setOwner = function (obj) {
+        // setting  our Object
+        if (obj === undefined) {
+            console.log('first set Person in task 1')
         } else {
-            this.owner = {
-                name: name,
-                age: age,
-            }
+            this.owner = obj;
         }
     }
 }
 
+
+
+
+// get our Person
+document.querySelector('.btn1').addEventListener('click', getPerson);
+
+//creating car &  set object as owner
+document.querySelector('.btn').addEventListener('click', () => {
+    const hyundai = new Car('g4kj', 4, false);
+    hyundai.setOwner(getPerson());
+    hyundai.aboutCar();
+})
