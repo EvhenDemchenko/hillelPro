@@ -8,8 +8,8 @@ function Man(name, age) {
     }
 }
 // creating person
-function  getPerson (){
-    const Alex = new Man('Alex', 22);
+function getPerson() {
+    const  Alex = new Man('Alex', 22);
     return Alex;
 }
 
@@ -19,21 +19,6 @@ function Car(engine, seats, runAndDrive,) {
     this.seats = seats;
     this.runAndDrive = runAndDrive;
 
-    this.aboutCar = function () {
-        const info = `
-            1 : engine model is  ${this.engine}
-            2 : number of seats  is ${this.seats} 
-            3 : runAndDrive is  ${this.runAndDrive}`;
-        if (typeof this.owner === "object") {
-            console.group(`
-            ${info}
-            4 : owner is  ${this.owner.name} 
-            and he is ${this.owner.age};
-            `)
-        } else {
-            console.log(info);
-        }
-    }
 
     this.setOwner = function (obj) {
         // setting  our Object
@@ -43,9 +28,21 @@ function Car(engine, seats, runAndDrive,) {
             this.owner = obj;
         }
     }
+    this.aboutCar = function () {
+        const info = `
+            1 : engine model is  ${this.engine}
+            2 : number of seats  is ${this.seats} 
+            3 : runAndDrive is  ${this.runAndDrive}`;
+        if (this.owner instanceof Man) {
+            console.group(`${info}
+            4 : owner is  ${this.owner.name} 
+            and he is ${this.owner.age};
+            `)
+        } else {
+            console.log(info);
+        }
+    }
 }
-
-
 
 
 // get our Person
