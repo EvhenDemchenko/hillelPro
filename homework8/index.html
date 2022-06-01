@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card__wrapper ">
+    <div class="card__infoOutput">
+        <div class="card__info-nuber">
+            #### #### #### ####
+        </div>
+        <div class="card__personalInfo">
+            <div class="card__info-holder">
+                <div class="holder__name">Evhen</div>
+                <div class="holder__SerName">Demchencko</div>
+            </div>
+            <div class="card__expiresDate">
+                mm/yy
+            </div>
+            <div class="card__cvv">
+                cvv
+            </div>
+        </div>
+    </div>
+    <div class="card__form">
+        <form class="js--card__form" action="#" method="post" name="cardForm">
+            <label class="card__label">
+                card number
+                <input class="js--card__number" name="card__label" type="text" placeholder="card number"
+                       pattern="\d{4}-\d{4}-\d{4}-\d{4}"
+                       required>
+            </label>
+            <label class="card__label">
+                card name
+                <input name="card__name" class="js--card__name" type="text" placeholder="card name">
+            </label>
+            <div class="card__bottom-inputs">
+                <label class="card-data__text">Expiration Date
+                    <select name="Month" class="card-data__month" required>
+                        <option disabled selected>Month</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </label>
+            </div>
+
+            <select name="Year" class="card-date__year" required>
+                <option disabled selected>Year</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+            </select>
+
+            <div class="card-cvv">
+                <label class="card-cvv__text">CVV
+                    <input type="number" name="Card CVV" placeholder="CVV" class="card-cvv__input" required>
+                </label>
+            </div>
+        </form>
+        <button disabled="true" class="card-button js--button">Submit</button>
+
+    </div>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
