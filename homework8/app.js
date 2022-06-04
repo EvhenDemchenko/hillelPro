@@ -6,22 +6,31 @@ class Card {
         this.cardDateYear = document.querySelector('.card-date__year');
         this.cardCvvText = document.querySelector('.card-cvv__text');
         this.outPut = document.querySelector('.card__infoOutput');
+        this.submitBtn = document.querySelector('.js--button')
+        // this.form = document.querySelector('.js--card__form')
 
         this.state = {
             cardNumber: '#### #### #### ####',
-            cardName: 'Evhen Demchenko',
+            cardName: 'Enter Name',
             dateMonth: 'mm/yy',
             dateYear: '2022',
-            cvv: 'cvv'
+            cvv: 'enter cvv',
+            valid: false,
+            checkState: function () {
+                return this.valid = this.cardNumber.length === 16
+                    && this.cardName.length !== 0
+                    && this.cvv.length === 3
+                    && this.dateYear.length === 4
+                    && this.dateMonth.length === 2;
+            },
         };
     };
 
-    getData(cardInput, cardInfoField, rangeA, rangeB, strLength) {
+    setData(cardInput, cardInfoField, rangeA, rangeB, strLength) {
         cardInput.addEventListener('keypress', (e) => {
-            console.log(e);
             if (e.keyCode >= rangeA && e.keyCode <= rangeB || e.keyCode === 32) {
                 cardInput.addEventListener('input', (event) => {
-                    event.target.value = event.target.value.substr(0, strLength);
+                    event.target.value = event.target.value.substring(0, strLength);
                     this.state[cardInfoField] = event.target.value;
                     this.render();
                 })
@@ -40,22 +49,37 @@ class Card {
     }
 
     addInputEvents() {
-        this.getData(this.cardName, 'cardName', 97, 122, 10);
-        this.getData(this.cardNumber, 'cardNumber', 47, 58, 16);
-        this.getData(this.cardCvvText, 'cvv', 47, 58, 3);
+        this.setData(this.cardName, 'cardName', 97, 122, 10);
+        this.setData(this.cardNumber, 'cardNumber', 47, 58, 16);
+        this.setData(this.cardCvvText, 'cvv', 47, 58, 3);
         this.addSelectEvents(this.cardDataMonth, 'dateMonth');
         this.addSelectEvents(this.cardDateYear, 'dateYear');
+        this.submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log(`
+                cardName:  ${this.state.cardName},
+                cardNumber:  ${this.state.cardNumber},
+                dateMonth:  ${this.state.dateMonth},
+                dateYear:  ${this.state.dateYear},
+                cvv:  ${this.state.cvv},
+            `)
+        })
     }
 
-    render() {
+    formValidate() {
+        this.submitBtn.disabled = !this.state.checkState();
+    }
 
+
+    render() {
+        this.formValidate()
         this.outPut.innerHTML = `
          <div class="card__info-nuber">
-         ${this.state.cardNumber}
+         ${this.state.cardNumber.substring(0, 4)} ${this.state.cardNumber.substring(4, 8)} ${this.state.cardNumber.substring(8, 12)} ${this.state.cardNumber.substring(12, 16)}
         </div>
         <div class="card__personalInfo">
             <div class="card__info-holder">
-                <div class="holder__name">
+                <div class="holder__name"> 
                 ${this.state.cardName}
                 </div>
             </div>
@@ -70,4 +94,4 @@ class Card {
 }
 
 const a = new Card();
-a.addInputEvents();
+a.addInputEvents()

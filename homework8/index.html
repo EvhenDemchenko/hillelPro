@@ -13,14 +13,13 @@
         </div>
         <div class="card__personalInfo">
             <div class="card__info-holder">
-                <div class="holder__name">Evhen</div>
-                <div class="holder__SerName">Demchencko</div>
+                <div class="holder__name">Your Name</div>
             </div>
             <div class="card__expiresDate">
-                mm/yy
+                MM/YY
             </div>
             <div class="card__cvv">
-                cvv
+                CVV
             </div>
         </div>
     </div>
@@ -28,7 +27,7 @@
         <form class="js--card__form" action="#" method="post" name="cardForm">
             <label class="card__label">
                 card number
-                <input class="js--card__number" name="card__label" type="text" placeholder="card number"
+                <input type="number" class="js--card__number" name="card__label" placeholder="card number"
                        pattern="\d{4}-\d{4}-\d{4}-\d{4}"
                        required>
             </label>
@@ -69,8 +68,9 @@
                     <input type="number" name="Card CVV" placeholder="CVV" class="card-cvv__input" required>
                 </label>
             </div>
+            <button type="submit" disabled="true" class="card-button js--button">Submit</button>
+
         </form>
-        <button disabled="true" class="card-button js--button">Submit</button>
 
     </div>
 </div>
