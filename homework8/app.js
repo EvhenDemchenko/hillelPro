@@ -5,20 +5,21 @@ class Card {
         this.cardDataMonth = document.querySelector('.card-data__month');
         this.cardDateYear = document.querySelector('.card-date__year');
         this.cardCvvText = document.querySelector('.card-cvv__text');
-        this.outPut = document.querySelector('.card__infoOutput');
+        this.outPut = document.querySelector('.js--output');
         this.submitBtn = document.querySelector('.js--button')
-        // this.form = document.querySelector('.js--card__form')
 
         this.state = {
             cardNumber: '#### #### #### ####',
-            cardName: 'Enter Name',
-            dateMonth: 'mm/yy',
-            dateYear: '2022',
-            cvv: 'enter cvv',
+            cardName: 'YOUR NAME',
+            dateMonth: 'MM',
+            dateYear: 'YY',
+            cvv: 'CVV CODE',
             valid: false,
+
             checkState: function () {
                 return this.valid = this.cardNumber.length === 16
-                    && this.cardName.length !== 0
+                    && this.cardName.length >= 3
+                    && this.cardName.length <= 10
                     && this.cvv.length === 3
                     && this.dateYear.length === 4
                     && this.dateMonth.length === 2;
@@ -26,7 +27,7 @@ class Card {
         };
     };
 
-    setData(cardInput, cardInfoField, rangeA, rangeB, strLength) {
+    setInputData(cardInput, cardInfoField, rangeA, rangeB, strLength) {
         cardInput.addEventListener('keypress', (e) => {
             if (e.keyCode >= rangeA && e.keyCode <= rangeB || e.keyCode === 32) {
                 cardInput.addEventListener('input', (event) => {
@@ -41,7 +42,7 @@ class Card {
 
     }
 
-    addSelectEvents(item, data) {
+    setOptionData(item, data) {
         item.addEventListener('input', e => {
             this.state[data] = e.target.value;
             this.render();
@@ -49,11 +50,11 @@ class Card {
     }
 
     addInputEvents() {
-        this.setData(this.cardName, 'cardName', 97, 122, 10);
-        this.setData(this.cardNumber, 'cardNumber', 47, 58, 16);
-        this.setData(this.cardCvvText, 'cvv', 47, 58, 3);
-        this.addSelectEvents(this.cardDataMonth, 'dateMonth');
-        this.addSelectEvents(this.cardDateYear, 'dateYear');
+        this.setInputData(this.cardName, 'cardName', 97, 122, 10);
+        this.setInputData(this.cardNumber, 'cardNumber', 47, 58, 16);
+        this.setInputData(this.cardCvvText, 'cvv', 47, 58, 3);
+        this.setOptionData(this.cardDataMonth, 'dateMonth');
+        this.setOptionData(this.cardDateYear, 'dateYear');
         this.submitBtn.addEventListener('click', (e) => {
             e.preventDefault();
             console.log(`
@@ -68,6 +69,12 @@ class Card {
 
     formValidate() {
         this.submitBtn.disabled = !this.state.checkState();
+        if (this.state.checkState()) {
+            this.submitBtn.disabled = false;
+            this.submitBtn.classList.remove('opacity-50')
+        } else {
+            this.submitBtn.classList.add('opacity-50')
+        }
     }
 
 
@@ -75,23 +82,28 @@ class Card {
         this.formValidate()
         this.outPut.innerHTML = `
          <div class="card__info-nuber">
-         ${this.state.cardNumber.substring(0, 4)} ${this.state.cardNumber.substring(4, 8)} ${this.state.cardNumber.substring(8, 12)} ${this.state.cardNumber.substring(12, 16)}
+         ${this.state.cardNumber.substring(0, 4)}
+          ${this.state.cardNumber.substring(4, 8)}
+            ${this.state.cardNumber.substring(8, 12)}
+            ${this.state.cardNumber.substring(12, 16)}
         </div>
-        <div class="card__personalInfo">
+        <div class="card__personalInfo flex flex-col">
             <div class="card__info-holder">
                 <div class="holder__name"> 
-                ${this.state.cardName}
+                ${this.state.cardName.toUpperCase()}
                 </div>
             </div>
+            <div class="card__bottom-section flex justify-between">
             <div class="card__expiresDate">
                 ${this.state.dateMonth}/${this.state.dateYear}
             </div>
             <div class="card__cvv">
                 ${this.state.cvv}
             </div>
+            </div>
         </div>`;
     }
 }
 
-const a = new Card();
-a.addInputEvents()
+const ui = new Card();
+ui.addInputEvents()
