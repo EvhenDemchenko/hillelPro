@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box
+}
+
+.js--slider__content {
+    display: none;
+}
+
+.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    animation: newSlide 1s ease;
+}
+@keyframes newSlide {
+    0%   {opacity: 0}
+    100% {opacity: 1}
+}
