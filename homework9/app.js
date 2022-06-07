@@ -72,7 +72,7 @@ const
         rightBtn: '.js--btn2',
         sliderItems: '.js--slider__content',
         sliderContainer: '.js--slider__wrapper',
-        randomColor: true
+        randomColor: true // можно включать и выключать рандомный цвет слайдов
     });
 
 slider.addEvents();
