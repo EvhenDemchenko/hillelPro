@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title> users </title>
+</head>
+<body>
+<div class="mx-auto w-1/2">
+    <table class="table border border-2 ">
+        <thead>
+        <tr class="border flex justify-between gap-20">
+            <th class=" border-green-500  ">id</th>
+            <th class=" border-green-500  ">name</th>
+            <th class=" border-green-500  ">phone</th>
+            <th class=" border-green-500  ">age</th>
+            <th class=" border-green-500  ">action</th>
+        </tr>
+        </thead>
+        <tbody class="js--output">
+
+        </tbody>
+    </table>
+    <form action="#" method="post" class="js--form">
+        <input type="text" placeholder="name" name="name" class="border-b-2 border-teal-200 w-screen mt-2  ">
+        <input type="text" placeholder="age" name="age" class="border-b-2 border-teal-200 w-screen mt-2  ">
+        <input type="text" placeholder="phone" name="phone" class="border-b-2 border-teal-200 w-screen mt-2  ">
+        <input type="submit" class="js--submit border-2 border-teal-400 rounded mt-2 p-1 active:border-teal-600">
+    </form>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
