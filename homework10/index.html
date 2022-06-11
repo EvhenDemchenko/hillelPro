@@ -1,36 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title> users </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 10</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
-<body>
-<div class="mx-auto w-1/2">
-    <table class="table border border-2 ">
-        <thead>
-        <tr class="border flex justify-between gap-20">
-            <th class=" border-green-500  ">id</th>
-            <th class=" border-green-500  ">name</th>
-            <th class=" border-green-500  ">phone</th>
-            <th class=" border-green-500  ">age</th>
-            <th class=" border-green-500  ">action</th>
-        </tr>
-        </thead>
-        <tbody class="js--output">
 
-        </tbody>
-    </table>
-    <form action="#" method="post" class="js--form">
-        <input type="text" placeholder="name" name="name" class="border-b-2 border-teal-200 w-screen mt-2  ">
-        <input type="text" placeholder="age" name="age" class="border-b-2 border-teal-200 w-screen mt-2  ">
-        <input type="text" placeholder="phone" name="phone" class="border-b-2 border-teal-200 w-screen mt-2  ">
-        <input type="submit" class="js--submit border-2 border-teal-400 rounded mt-2 p-1 active:border-teal-600">
-    </form>
-</div>
-<script src="./app.js"></script>
+<body>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Action</th>
+            </thead>
+            <tbody class="js--content"></tbody>
+        </table>
+        <div class="card p-4">
+            <button class="js--add btn btn-add btn-primary">Add user</button>
+        </div>
+        <form class="js--form card card--user p-4">
+            <input type="hidden" name="id">
+            <input class="form-control mb-1" type="text" name="name" placeholder="Name" required>
+            <input class="form-control mb-1" type="text" name="phone" placeholder="Phone" required>
+            <input class="form-control mb-3" type="number" name="age" placeholder="Age" min="18" required>
+            <button class="btn btn-primary mb-2 w-100" type="submit">OK</button>
+        </form>
+        <code class="card p-4">
+            <pre class="js--user user-info"></pre>
+        </code>
+    </div>
+    <script src="main.js"></script>
 </body>
+
 </html>
