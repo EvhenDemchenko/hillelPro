@@ -98,11 +98,8 @@ function UserTable(params) {
         const deleteUser = function () {
             currentElement.remove();
             const users = JSON.parse(localStorage.getItem('users'));
-            const newUsers = users.filter((element) => {
-                if (element.id !== user.id) {
-                    localStorage.setItem('users', JSON.stringify(newUsers));
-                }
-            })
+            const newUsers = users.filter((element) => element.id !== user.id);
+            localStorage.setItem('users', JSON.stringify(newUsers));
         }
 
         showButton.addEventListener('click', showUser);
