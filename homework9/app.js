@@ -6,16 +6,75 @@ class Slider {
         this.sliderContainer = document.querySelector(props.sliderContainer);
         this.counter = 0;
         this.randomColor = props.randomColor;
-
+        this.autoSlide = props.autoSlide;
+        this.addEvents();
+        this.changeSlide();
     }
 
-    randColor = (min, max) => {
-        if (this.randomColor === true) {
-            let rand = min + Math.random() * (max + 1 - min);
-            return Math.floor(rand);
+    rgbColor = (min, max) => {
+        let rand = min + Math.random() * (max + 1 - min);
+        return Math.floor(rand);
+    }
+
+    setRandomColor() {
+        if (this.randomColor) {
+            this.sliderItems[this.counter].style.background = `
+        rgb(
+         ${this.rgbColor(1, 255)}
+        ,${this.rgbColor(1, 255)}
+        ,${this.rgbColor(1, 255)}
+        )`;
         } else {
-            console.log('random-color is not enable');
+            console.log('random color is no enable')
         }
+    };
+
+    buttonsState() {
+        if (this.counter === 0) {
+            this.left.disabled = true;
+        } else if (this.counter === this.sliderItems.length - 1) {
+            this.right.disabled = true;
+        } else {
+            this.left.disabled = false;
+            this.right.disabled = false;
+        }
+        this.setRandomColor();
+    }
+
+    changeSlide() {
+        if (this.autoSlide === true) {
+            this.sliderId = setInterval(() => {
+                if (this.counter === this.sliderItems.length - 1) {
+                    clearInterval(this.sliderId);
+                } else {
+                    this.slideRight();
+                }
+            }, 5000)
+        } else {
+            console.log('autoSlider is no enable');
+        }
+    }
+
+    slideLeft() {
+        this.sliderItems.forEach(item => {
+            item.classList.remove('active')
+        })
+        this.counter--;
+        this.buttonsState();
+        this.sliderItems[this.counter].classList.add('active');
+        clearInterval(this.sliderId);
+        this.changeSlide();
+    }
+
+    slideRight() {
+        this.sliderItems.forEach(item => {
+            item.classList.remove('active')
+        })
+        this.counter++;
+        this.buttonsState();
+        this.sliderItems[this.counter].classList.add('active');
+        clearInterval(this.sliderId);
+        this.changeSlide();
     }
 
     addEvents() {
@@ -28,51 +87,14 @@ class Slider {
         })
         this.buttonsState();
     }
-
-    buttonsState() {
-        if (this.counter === 0) {
-            this.left.disabled = true;
-        } else if (this.counter === this.sliderItems.length - 1) {
-            this.right.disabled = true;
-        } else {
-            this.left.disabled = false;
-            this.right.disabled = false;
-        }
-        console.log(this.sliderItems[this.counter])
-        this.sliderItems[this.counter].style.background = `
-        rgb(
-         ${this.randColor(1, 255)}
-        ,${this.randColor(1, 255)}
-        ,${this.randColor(1, 255)}
-        )`
-    }
-
-    slideLeft() {
-        this.sliderItems.forEach(item => {
-            item.classList.remove('active')
-        })
-        this.counter--;
-        this.buttonsState();
-        this.sliderItems[this.counter].classList.add('active');
-    }
-
-    slideRight() {
-        this.sliderItems.forEach(item => {
-            item.classList.remove('active')
-        })
-        this.counter++;
-        this.buttonsState();
-        this.sliderItems[this.counter].classList.add('active');
-    }
 }
 
-const
-    slider = new Slider({
-        leftBtn: '.js--btn1',
-        rightBtn: '.js--btn2',
-        sliderItems: '.js--slider__content',
-        sliderContainer: '.js--slider__wrapper',
-        randomColor: true // можно включать и выключать рандомный цвет слайдов
-    });
+new Slider({
+    leftBtn: '.js--btn1',
+    rightBtn: '.js--btn2',
+    sliderItems: '.js--slider__content',
+    sliderContainer: '.js--slider__wrapper',
+    randomColor: true, // можно включать и выключать рандомный цвет слайдов
+    autoSlide: true, // можно включать и выключать автослайд
+});
 
-slider.addEvents();
