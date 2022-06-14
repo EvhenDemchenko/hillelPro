@@ -16,14 +16,23 @@ function FormValidate(form) {
             }
         }
     }
+
     this.required = function (element, message) {
         const notValidString = element.value.length === 0;
         const notValidCheckBox = element.type === 'checkbox' && element.checked === false;
         if (notValidString || notValidCheckBox) {
             this.errorTemplate(element, message);
+        } else {
+            this.correctTemplate(element, message);
         }
     }
-
+    this.correctTemplate = function (element) {
+        const parent = element.closest(`.${_parentItemClass}`);
+        if (parent.classList.contains(_errorWrapperClass) === true) {
+            parent.classList.remove(_errorWrapperClass);
+            parent.querySelector("small").remove();
+        }
+    }
     this.errorTemplate = function (element, message) {
         const parent = element.closest(`.${_parentItemClass}`);
         if (parent.classList.contains(_errorWrapperClass) === false) {
