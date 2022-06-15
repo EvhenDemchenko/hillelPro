@@ -23,7 +23,7 @@ function FormValidate(form) {
         if (notValidString || notValidCheckBox) {
             this.errorTemplate(element, message);
         } else {
-            this.correctTemplate(element, message);
+            this.correctTemplate(element);
         }
     }
     this.correctTemplate = function (element) {
