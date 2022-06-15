@@ -7,6 +7,7 @@ class Slider {
         this.counter = 0;
         this.randomColor = props.randomColor;
         this.autoSlide = props.autoSlide;
+        this.sliderId;
         this.addEvents();
         this.changeSlide();
     }
@@ -30,14 +31,8 @@ class Slider {
     };
 
     buttonsState() {
-        if (this.counter === 0) {
-            this.left.disabled = true;
-        } else if (this.counter === this.sliderItems.length - 1) {
-            this.right.disabled = true;
-        } else {
-            this.left.disabled = false;
-            this.right.disabled = false;
-        }
+        this.left.disabled = this.counter === 0;
+        this.right.disabled = this.counter === this.sliderItems.length -1;
         this.setRandomColor();
     }
 
