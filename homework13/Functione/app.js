@@ -20,5 +20,5 @@ Watch.prototype.stopTimer = function () {
         clearInterval(this.timerID);
     })
 }
-const a = new Watch();
-a.stopTimer();
+const watch = new Watch();
+watch.stopTimer();
