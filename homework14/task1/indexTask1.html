@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider{
+            height: 50px;
+            padding: 0;
+            margin: 0;
+        }
+
+        div p {
+            display: none;
+        }
+        div p.current {
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class='slider'>
+    <p id="first" class="current">JAVA</p>
+    <p>C</p>
+    <p>PHP</p>
+    <p>JS</p>
+    <p>CSS</p>
+    <p id="last">HTML</p>
+</div>
+<button id="prev">Назад</button>
+<button id="next">Вперед</button>
+
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="../task2/app2.js"></script>
+</body>
+</html>
