@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> weather </title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .img-card {
+            width: 100px !important;
+            height: 100px !important;
+            align-self: center;
+        }
+        .closed{
+            transition: all 0.5s ease-in-out;
+            transform: translateY(-150px);
+            opacity: 0 !important;
+        }
+        .inner {
+            z-index: 1;
+            position: absolute;
+            top: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: all 0.5s ease-in-out;
+            opacity: 1;
+        }
+        .card{
+            position: relative;
+            z-index: 10 !important;
+        }
+
+    </style>
+</head>
+<body class="container">
+<form class="form p-5" action="" method="get">
+    <input class="input border border-3 border-dark  rounded-3 p-1" placeholder="enter city name" type="text">
+    <button class="btn btn-primary" type="submit"> get weather</button>
+    <br>
+</form>
+
+<div class="container p-5 ">
+    <div class="wrapper">
+<!--        <div class="card col-1" style="width: 18rem;">-->
+<!--            <img class="card-img-top weather-img img-card"-->
+<!--                 src="" alt="Card image cap">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title  weather-city"> Weather in ${data.name} </h5>-->
+<!--                <p class="card-text weather-description"> ${data.weather[0].description}</p>-->
+<!--            </div>-->
+<!--            <ul class="list-group list-group-flush">-->
+<!--                <li class="list-group-item"> Now tempreture : <b>${Math.round(data.main.temp)}&deg;</b></li>-->
+<!--                <li class="list-group-item"> Min temperature : <b>${Math.round(data.main.temp_min)}&deg;</b></li>-->
+<!--                <li class="list-group-item"> Max temperature : <b>${Math.round(data.main.temp_max)}&deg;</b></li>-->
+<!--            </ul>-->
+<!--            <ul class="list-group">-->
+<!--                <a class="href" href="#"> open </a>-->
+<!--                <div class="inner closed">-->
+<!--                    <li class="list-group-item">01</li>-->
+<!--                    <li class="list-group-item">02</li>-->
+<!--                    <li class="list-group-item">03</li>-->
+<!--                </div>-->
+
+<!--            </ul>-->
+        </div>
+    </div>
+
+
+</div>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
