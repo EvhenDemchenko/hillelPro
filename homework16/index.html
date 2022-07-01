@@ -5,73 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> weather </title>
+    <title> weather api App </title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <style>
-        .wrapper {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 20px;
-            row-gap: 150px;
-        }
+    <link rel="stylesheet" href="style.css">
 
-        .img-card {
-            width: 100px !important;
-            height: 100px !important;
-            align-self: center;
-        }
-
-        .closed {
-            transition: all 0.5s ease-in-out;
-            transform: translateY(-150px);
-            opacity: 0 !important;
-        }
-
-        .inner {
-            z-index: 1;
-            position: absolute;
-            top: 100%;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            transition: all 0.5s ease-in-out;
-            opacity: 1;
-        }
-
-        .card {
-            position: relative;
-            z-index: 10 !important;
-        }
-
-        .form-container {
-            position: relative;
-            margin-bottom: 20px;
-            z-index: 10;
-        }
-
-        #input {
-            transition: all 0.5s;
-            z-index: 10;
-        }
-
-        label {
-            position: absolute;
-            left: 5px;
-            bottom: 5px;
-            transition: all 0.5s;
-            z-index: 1;
-        }
-
-        #input:focus + label, #input:not(:placeholder-shown) + label {
-            bottom: 50px;
-        }
-
-        #input::placeholder {
-            color: transparent;
-        }
-
-
-    </style>
 </head>
 <body class="container">
 <form class="form p-5" action="" method="get">
@@ -82,10 +19,8 @@
             Enter city name
         </label>
     </div>
-    </div>
-    <button class="btn btn1 btn-primary" type="submit"> Get weather </button>
-    <button class=" btn btn2 btn-primary" type="submit"> Refresh info </button>
-
+    <button class="btn btn1 btn-primary" type="submit"> Get weather</button>
+    <button class=" btn btn2 btn-primary" type="submit"> Refresh info</button>
 </form>
 
 <div class="container p-5 ">
@@ -94,9 +29,7 @@
     </div>
 </div>
 
-
-</div>
 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./app.js"></script>
+<script src="./main.js"></script>
 </body>
 </html>
