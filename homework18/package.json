@@ -2,13 +2,16 @@
   "name": "homework18",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
+    "build": "babel src -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
     "bootstrap": "^5.1.3"
   }
 }
