@@ -7,11 +7,24 @@ class Users {
         this.Init();
     }
 
-     Init() {
-        this.getUserBtn.addEventListener('click', () => {
-            this.id = (this.input.value.replace(/[^\d]/g, ""));
+    Init() {
+        this.InputValueValidation();
 
-            this.GetPostAndComments(this.id);
+        this.getUserBtn.addEventListener('click', () => {
+            this.GetPostAndComments(this.input.value);
+        })
+    }
+
+    InputValueValidation() {
+        let currentValue = 0;
+        this.input.addEventListener('click', (event) => {
+            event.target.select();
+            this.input.addEventListener('input', (event) => {
+                if (event.target.value.match(/^[0-9]$|^[1-9][0-9]$|^(100)$/)) {
+                    currentValue = +event.target.value;
+                }
+                this.input.value = currentValue;
+            })
         })
     }
 

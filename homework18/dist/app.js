@@ -29,10 +29,27 @@ var Users = /*#__PURE__*/function () {
     value: function Init() {
       var _this = this;
 
+      this.InputValueValidation();
       this.getUserBtn.addEventListener('click', function () {
-        _this.id = _this.input.value.replace(/[^\d]/g, "");
+        _this.GetPostAndComments(_this.input.value);
+      });
+    }
+  }, {
+    key: "InputValueValidation",
+    value: function InputValueValidation() {
+      var _this2 = this;
 
-        _this.GetPostAndComments(_this.id);
+      var currentValue = 0;
+      this.input.addEventListener('click', function (event) {
+        event.target.select();
+
+        _this2.input.addEventListener('input', function (event) {
+          if (event.target.value.match(/^[0-9]$|^[1-9][0-9]$|^(100)$/)) {
+            currentValue = +event.target.value;
+          }
+
+          _this2.input.value = currentValue;
+        });
       });
     }
   }, {
