@@ -7,19 +7,22 @@ class Users {
         this.Init();
     }
 
-    async Init() {
+     Init() {
         this.getUserBtn.addEventListener('click', () => {
-            this.GetPostAndComments(this.input);
+            this.id = (this.input.value.replace(/[^\d]/g, ""));
+
+            this.GetPostAndComments(this.id);
         })
     }
 
     async GetPostAndComments(id) {
         try {
-            const PostResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${id.value}`, {method: 'GET'});
+            const PostResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {method: 'GET'});
             if (PostResponse.ok) {
-                const CommentsResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${id.value}/comments`, {method: 'GET'});
+                const CommentsResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`, {method: 'GET'});
                 const comments = await CommentsResponse.json();
                 const post = await PostResponse.json();
+
                 await this.PostTemplate(post);
                 await this.CommentsTemplate(comments);
             }
@@ -32,15 +35,14 @@ class Users {
     CommentsTemplate(comments) {
         comments.forEach(item => {
                 const {id, name, email, postId, body} = item;
-                console.log(comments)
                 document.querySelector(`[data-id='${postId}']`).insertAdjacentHTML('beforeend', `
-                      <li class="media mt-5 mb-5 ">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1  ">${id}: <b>${name} </b>></h5>
-                            <h5 class="mt-0 mb-1  ">Email : ${email}</h5>
-                            <p class="mt-0 mb-1"> Text: ${body}</p>
-                        </div>
-                      </li>`);
+                  <li class="media mt-5 mb-5 ">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1  ">${id}: <b>${name} </b>></h5>
+                        <h5 class="mt-0 mb-1  ">Email : ${email}</h5>
+                        <p class="mt-0 mb-1"> Text: ${body}</p>
+                    </div>
+                  </li>`);
             }
         )
     }
@@ -49,7 +51,7 @@ class Users {
     PostTemplate(post) {
         const {body, id, title} = post;
         this.userCard = `
-            <div class="col-sm-12 ">
+            <div class=" col-12  mt-5">
                 <div class="card border-primary border-2">
                     <div data-id="${id}" class="card-body">
                         <h5 class="card-title">User id : <b>${id}</b> Title : ${title}</h5>

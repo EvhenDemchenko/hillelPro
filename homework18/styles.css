@@ -24,9 +24,11 @@ label {
 #input::placeholder {
     color: transparent;
 }
+
 li.media::after {
     content: '' !important;
 }
+
 .disabled {
     pointer-events: none;
     cursor: default;

@@ -26,95 +26,78 @@ var Users = /*#__PURE__*/function () {
 
   _createClass(Users, [{
     key: "Init",
-    value: function () {
-      var _Init = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var _this = this;
+    value: function Init() {
+      var _this = this;
 
+      this.getUserBtn.addEventListener('click', function () {
+        _this.id = _this.input.value.replace(/[^\d]/g, "");
+
+        _this.GetPostAndComments(_this.id);
+      });
+    }
+  }, {
+    key: "GetPostAndComments",
+    value: function () {
+      var _GetPostAndComments = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(id) {
+        var PostResponse, CommentsResponse, comments, post;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.getUserBtn.addEventListener('click', function () {
-                  _this.GetPostAndComments(_this.input);
-                });
-
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function Init() {
-        return _Init.apply(this, arguments);
-      }
-
-      return Init;
-    }()
-  }, {
-    key: "GetPostAndComments",
-    value: function () {
-      var _GetPostAndComments = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id) {
-        var PostResponse, CommentsResponse, comments, post;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
-                return fetch("https://jsonplaceholder.typicode.com/posts/".concat(id.value), {
+                _context.prev = 0;
+                _context.next = 3;
+                return fetch("https://jsonplaceholder.typicode.com/posts/".concat(id), {
                   method: 'GET'
                 });
 
               case 3:
-                PostResponse = _context2.sent;
+                PostResponse = _context.sent;
 
                 if (!PostResponse.ok) {
-                  _context2.next = 18;
+                  _context.next = 18;
                   break;
                 }
 
-                _context2.next = 7;
-                return fetch("https://jsonplaceholder.typicode.com/posts/".concat(id.value, "/comments"), {
+                _context.next = 7;
+                return fetch("https://jsonplaceholder.typicode.com/posts/".concat(id, "/comments"), {
                   method: 'GET'
                 });
 
               case 7:
-                CommentsResponse = _context2.sent;
-                _context2.next = 10;
+                CommentsResponse = _context.sent;
+                _context.next = 10;
                 return CommentsResponse.json();
 
               case 10:
-                comments = _context2.sent;
-                _context2.next = 13;
+                comments = _context.sent;
+                _context.next = 13;
                 return PostResponse.json();
 
               case 13:
-                post = _context2.sent;
-                _context2.next = 16;
+                post = _context.sent;
+                _context.next = 16;
                 return this.PostTemplate(post);
 
               case 16:
-                _context2.next = 18;
+                _context.next = 18;
                 return this.CommentsTemplate(comments);
 
               case 18:
                 this.input.value = '';
-                _context2.next = 24;
+                _context.next = 24;
                 break;
 
               case 21:
-                _context2.prev = 21;
-                _context2.t0 = _context2["catch"](0);
-                console.error(_context2.t0);
+                _context.prev = 21;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
 
               case 24:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, this, [[0, 21]]);
+        }, _callee, this, [[0, 21]]);
       }));
 
       function GetPostAndComments(_x) {
@@ -132,8 +115,7 @@ var Users = /*#__PURE__*/function () {
             email = item.email,
             postId = item.postId,
             body = item.body;
-        console.log(comments);
-        document.querySelector("[data-id='".concat(postId, "']")).insertAdjacentHTML('beforeend', "\n                      <li class=\"media mt-5 mb-5 \">\n                        <div class=\"media-body\">\n                            <h5 class=\"mt-0 mb-1  \">".concat(id, ": <b>").concat(name, " </b>></h5>\n                            <h5 class=\"mt-0 mb-1  \">Email : ").concat(email, "</h5>\n                            <p class=\"mt-0 mb-1\"> Text: ").concat(body, "</p>\n                        </div>\n                      </li>"));
+        document.querySelector("[data-id='".concat(postId, "']")).insertAdjacentHTML('beforeend', "\n                  <li class=\"media mt-5 mb-5 \">\n                    <div class=\"media-body\">\n                        <h5 class=\"mt-0 mb-1  \">".concat(id, ": <b>").concat(name, " </b>></h5>\n                        <h5 class=\"mt-0 mb-1  \">Email : ").concat(email, "</h5>\n                        <p class=\"mt-0 mb-1\"> Text: ").concat(body, "</p>\n                    </div>\n                  </li>"));
       });
     }
   }, {
@@ -142,7 +124,7 @@ var Users = /*#__PURE__*/function () {
       var body = post.body,
           id = post.id,
           title = post.title;
-      this.userCard = "\n            <div class=\"col-sm-12 \">\n                <div class=\"card border-primary border-2\">\n                    <div data-id=\"".concat(id, "\" class=\"card-body\">\n                        <h5 class=\"card-title\">User id : <b>").concat(id, "</b> Title : ").concat(title, "</h5>\n                        <p class=\"card-text\">").concat(body, "</p>\n                    </div>\n                </div>\n            </div>");
+      this.userCard = "\n            <div class=\" col-12  mt-5\">\n                <div class=\"card border-primary border-2\">\n                    <div data-id=\"".concat(id, "\" class=\"card-body\">\n                        <h5 class=\"card-title\">User id : <b>").concat(id, "</b> Title : ").concat(title, "</h5>\n                        <p class=\"card-text\">").concat(body, "</p>\n                    </div>\n                </div>\n            </div>");
       this.Render(this.userCard);
     }
   }, {
