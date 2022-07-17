@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const UserModel = require('./user-model');
+
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
 mongoose.connect(
-  'mongodb+srv://Alex:Gni6hQ6QOYtLZ03m@cluster0.yvpdhaf.mongodb.net/?retryWrites=true&w=majority',
-  {},
+    'mongodb+srv://anti_2012:8634weeb@cluster0.7nllt.mongodb.net/?retryWrites=true&w=majority',
   () => { console.log('START "DB"') }
 );
 
