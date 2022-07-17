@@ -1,0 +1,5 @@
+@mixin some-name($mw: 1140px, $px: 15px) {
+   margin: 0 auto;
+   max-width: $mw;
+   padding: 0 $px;
+}
