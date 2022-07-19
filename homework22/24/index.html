@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*const arr = [1,2,3];
+    if (arr.indexOf(3) !== -1) {
+        console.log('Found');
+    }
+
+    if (arr.includes(3)) {
+        console.log('Found');
+    }
+    console.log(Math.pow(4, 2) ===  4 ** 2)
+    */
+
+/*    const str1 = 'test'.padStart(10);
+    const str2 = 'test'.padStart(10, 'Привет как дела?');
+    console.log(str1);
+    console.log(str2);
+
+    const str3 = 'test'.padEnd(10);
+    const str4 = 'test'.padEnd(10, 'Привет как дела?');
+    console.log(str3);
+    console.log(str4);*/
+
+/*    let user = {};
+    user.age = 30;
+    Object.defineProperty(user, 'name', {
+        value: "Anton",
+        writable: false,
+        enumerable: true,
+        configurable: true,
+    })
+    user.name = "Anna"
+    user.age = 31
+    console.log(user);
+    console.log(Object.getOwnPropertyDescriptors(user));*/
+
+/*    const person1 = {
+        set name(newName) {
+            console.log('Я работаю !!!!');
+            console.log(newName);
+        }
+    }
+    person1.name = 'x';
+    console.log(person1);
+
+    console.log('-----------------');
+
+    const person2 = {}
+    Object.assign(person2, person1);
+    person2.name = 'x2'
+    console.log(person2);
+
+    console.log('-----------------');
+
+    const person3 = {}
+    Object.defineProperties(person3, Object.getOwnPropertyDescriptors(person1));
+    person3.name = 'x3';
+    console.log(person3);*/
+
+    async function f() {
+        return Promise.resolve('УРАААА!')
+    }
+    // const test = await f;
+    // console.log(test);
+    async function showPromise() {
+        return console.log(await  f())
+    }
+    showPromise()
+</script>
+</body>
+</html>

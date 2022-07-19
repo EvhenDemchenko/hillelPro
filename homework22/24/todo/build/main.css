@@ -1,0 +1,66 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/index.scss ***!
+  \**************************************************************************************************************/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #7df0f5;
+}
+
+.form {
+  display: flex;
+  background: #fff;
+  border: 1px solid;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.form__input {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.form__button {
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: auto;
+}
+
+.todo-item {
+  display: flex;
+  background: antiquewhite;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.todo-item__label {
+  display: flex;
+  flex-grow: 1;
+}
+
+.todo-item__desc {
+  flex-grow: 1;
+  padding-left: 10px;
+}
+
+.todo-item__desc--underline .todo-item__desc {
+  text-decoration: line-through;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+/*# sourceMappingURL=main.css.map*/
