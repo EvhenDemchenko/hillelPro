@@ -38,24 +38,24 @@ class Todo {
     }
 
     createTemplate(description, checked, id) {
-        this.item = document.createElement('div');
-        this.item.classList.add('todo-item');
-        this.item.classList.add('js--todo-item');
-        this.item.dataset.id = id;
+        const item = document.createElement('div');
+        item.classList.add('todo-item');
+        item.classList.add('js--todo-item');
+        item.dataset.id = id;
 
-        this.item.innerHTML = (
+        item.innerHTML = (
             `<label class="todo-item__label">
                 <input type="checkbox" class="js--complete" ${checked ? 'checked="true"' : ''}>
-                <p class=" todo-item__desc js--desc ${checked ? 'checked' : ''}">${description}</p>
+                <p class=" todo-item__desc js--desc ${checked ? 'todo-item__desc--underline' : ''}">${description}</p>
              </label>
              <button class="form__button js--delete">Удалить</button>`
         );
 
-        this.item.querySelector('.js--delete').addEventListener('click', () => this.delete(id, this.item));
-        this.item.querySelector('.js--complete').addEventListener('click', (event) => {
-            this.complete(event, description, id)
+        item.querySelector('.js--delete').addEventListener('click', () => this.delete(id, item));
+        item.querySelector('.js--complete').addEventListener('click', (event) => {
+            this.complete(event, description, id, item)
         })
-        return this.item;
+        return item;
     }
 
 
@@ -99,12 +99,12 @@ class Todo {
         await fetch(`http://localhost:3000/todos/${id}`, {
             method: 'DELETE'
         })
-        await this.loadFromServer();
+        item.remove();
     }
 
-    async complete(event, description, id) {
-        let state;
-        state = !event.target.checked !== true;
+    async complete(event, description, id, item) {
+        let state = !event.target.checked !== true;
+        const currentItem = item.querySelector('p');
         await fetch(`http://localhost:3000/todos/${id}`, {
             method: "PUT",
             headers: {
@@ -112,7 +112,7 @@ class Todo {
             },
             body: JSON.stringify({"checked": state, "text": description})
         })
-        await this.loadFromServer();
+        state ? currentItem.classList.add('todo-item__desc--underline') : currentItem.classList.remove('todo-item__desc--underline');
     }
 }
 

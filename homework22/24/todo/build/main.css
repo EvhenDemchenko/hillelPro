@@ -55,7 +55,7 @@ body {
   padding-left: 10px;
 }
 
-.todo-item__desc--underline .todo-item__desc {
+.todo-item__desc--underline {
   text-decoration: line-through;
 }
 
