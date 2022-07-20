@@ -7,7 +7,6 @@ module.exports = {
     mode: 'development',
     entry: {
         main: [
-            path.join(__dirname, '/node_modules/bootstrap/dist/css/bootstrap.min.css'),
             path.join(__dirname, './src/main.js'),
             path.join(__dirname, './src/style.scss'),
         ]
