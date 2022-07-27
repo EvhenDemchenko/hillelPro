@@ -5,7 +5,6 @@ class FormElement {
         this.name = props.name;
         this.type = props.type;
         this.value = props.value;
-        this.wrapper = props.wrapper;
     }
 
     showName() {
@@ -16,16 +15,20 @@ class FormElement {
         return this.value;
     }
 
+}
+
+class TemplatePaste {
+
     static PlacedElement(wrapper, element,) {
         wrapper.insertAdjacentElement('beforeend', element);
     }
 }
 
 class TextElement extends FormElement {
-    constructor(placeholder, ...args) {
+    constructor(placeholder, wrapper, ...args) {
         super(...args);
         this.placeholder = placeholder;
-
+        this.wrapper = wrapper;
         this.CreateElement();
     }
 
@@ -35,14 +38,18 @@ class TextElement extends FormElement {
         this.element.name = this.name;
         this.element.value = this.value;
         this.element.placeholder = this.placeholder;
-        TextElement.PlacedElement(this.wrapper, this.element);
+        TemplatePaste.PlacedElement(this.wrapper, this.element);
+    }
+    getValue(){
+        this.value  = this.element.value;
+        return this.value;
     }
 }
 
 class CheckboxElement extends FormElement {
-    constructor(checked, ...args) {
+    constructor(checked,wrapper, ...args) {
         super(...args);
-
+        this.wrapper = wrapper;
         this.checked = checked;
         this.CreateElement();
 
@@ -51,7 +58,7 @@ class CheckboxElement extends FormElement {
     CreateTemplate() {
         this.template = document.createElement('label');
         this.template.innerText = 'You should agree first';
-        CheckboxElement.PlacedElement(this.wrapper, this.template);
+        TemplatePaste.PlacedElement(this.wrapper, this.template);
         this.templateElement = document.querySelector('label')
     }
 
@@ -62,13 +69,15 @@ class CheckboxElement extends FormElement {
         this.element.type = this.type;
         this.element.checked = this.checked;
         this.element.style.marginLeft = '10px';
-        CheckboxElement.PlacedElement(this.templateElement, this.element);
+        TemplatePaste.PlacedElement(this.templateElement, this.element);
     }
 }
 
 class ButtonElement extends FormElement {
-    constructor(...args) {
+    constructor(wrapper,...args) {
         super(...args);
+        this.wrapper = wrapper;
+
         this.CreateElement();
     }
 
@@ -79,62 +88,50 @@ class ButtonElement extends FormElement {
         this.element.value = this.value;
         this.element.classList.add('btn');
         this.element.classList.add('btn-primary');
-        FormElement.PlacedElement(this.wrapper, this.element);
+        TemplatePaste.PlacedElement(this.wrapper, this.element);
     }
 }
 
 
-
-
-const userNameInput = new TextElement('Your name'
-    , {
+const userNameInput = new TextElement(
+    'Your name',
+    wrapper,
+    {
         name: 'name',
         type: 'text',
         value: null,
-        wrapper: wrapper,
+
     });
-const userEmailInput = new TextElement('Your email'
-    , {
+userNameInput.getValue();
+const userEmailInput = new TextElement(
+    'Your email',
+    wrapper,
+    {
         name: 'email',
         type: 'email',
         value: null,
-        wrapper: wrapper,
     });
-const userPasswordInput = new TextElement('Your password'
+const userPasswordInput = new TextElement(
+    'Your password',
+    wrapper
     , {
         name: 'password',
         type: 'password',
         value: null,
-        wrapper: wrapper,
     });
-const userCheckbox = new CheckboxElement(true
-    , {
+const userCheckbox = new CheckboxElement(
+    true,
+    wrapper,
+    {
         name: 'checkbox',
         type: 'checkbox',
         value: null,
-        wrapper: wrapper,
     })
-const userButton = new ButtonElement({
+const userButton = new ButtonElement(
+    wrapper, {
     name: 'submitBtn',
     type: 'button',
     value: 'REGISTER',
-    wrapper: wrapper
 })
 
-/*new ValidationForm({
-    form: document.querySelector('.js--wrapper')
-});*/
 
-// class ValidationForm {
-//     constructor(props) {
-//         this.form = props.form;
-//         this.Init();
-//     }
-//
-//     Init() {
-//         console.log(this.form)
-//         for (let i = 0; i < this.form.elements.length; i++){
-//             console.log(this.form.elements[i])
-//         }
-//     }
-// }
