@@ -18,18 +18,38 @@ class FormElement {
 }
 
 class TemplatePaste {
-
     static PlacedElement(wrapper, element,) {
         wrapper.insertAdjacentElement('beforeend', element);
     }
+
+    static ValueValidation(input, regEx) {
+        input.addEventListener('input', (event) => {
+            const btn = document.querySelector('.btn');
+            btn.disabled = false;
+            btn.disabled = !input.value.match(regEx);
+            if (event.target.value === ''){
+                btn.disabled = true;
+            }
+            for (let i = 0; i < wrapper.elements.length; i++){
+                if (wrapper.elements[i].value.length <= 0){
+                    btn.disabled = true;
+                }
+            }
+        })
+
+    }
+
+
 }
 
 class TextElement extends FormElement {
-    constructor(placeholder, wrapper, ...args) {
+    constructor(placeholder, wrapper, regEx, ...args) {
         super(...args);
+        this.regEx = regEx;
         this.placeholder = placeholder;
         this.wrapper = wrapper;
         this.CreateElement();
+        TemplatePaste.ValueValidation(this.element,this.regEx);
     }
 
     CreateElement() {
@@ -40,14 +60,15 @@ class TextElement extends FormElement {
         this.element.placeholder = this.placeholder;
         TemplatePaste.PlacedElement(this.wrapper, this.element);
     }
-    getValue(){
-        this.value  = this.element.value;
+
+    getValue() {
+        this.value = this.element.value;
         return this.value;
     }
 }
 
 class CheckboxElement extends FormElement {
-    constructor(checked,wrapper, ...args) {
+    constructor(checked, wrapper, ...args) {
         super(...args);
         this.wrapper = wrapper;
         this.checked = checked;
@@ -74,12 +95,14 @@ class CheckboxElement extends FormElement {
 }
 
 class ButtonElement extends FormElement {
-    constructor(wrapper,...args) {
+    constructor(wrapper, disabled, ...args) {
         super(...args);
         this.wrapper = wrapper;
-
+        this.disabled = disabled;
         this.CreateElement();
     }
+
+
 
     CreateElement() {
         this.element = document.createElement('input');
@@ -88,6 +111,7 @@ class ButtonElement extends FormElement {
         this.element.value = this.value;
         this.element.classList.add('btn');
         this.element.classList.add('btn-primary');
+        this.element.disabled = this.disabled;
         TemplatePaste.PlacedElement(this.wrapper, this.element);
     }
 }
@@ -96,6 +120,8 @@ class ButtonElement extends FormElement {
 const userNameInput = new TextElement(
     'Your name',
     wrapper,
+    /[a-zA-Z][a-zA-Z0-9-_]{3,32}/
+    ,
     {
         name: 'name',
         type: 'text',
@@ -106,6 +132,8 @@ userNameInput.getValue();
 const userEmailInput = new TextElement(
     'Your email',
     wrapper,
+    /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/
+    ,
     {
         name: 'email',
         type: 'email',
@@ -114,6 +142,7 @@ const userEmailInput = new TextElement(
 const userPasswordInput = new TextElement(
     'Your password',
     wrapper
+    ,/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
     , {
         name: 'password',
         type: 'password',
@@ -128,10 +157,12 @@ const userCheckbox = new CheckboxElement(
         value: null,
     })
 const userButton = new ButtonElement(
-    wrapper, {
-    name: 'submitBtn',
-    type: 'button',
-    value: 'REGISTER',
-})
+    wrapper,
+    true
+    , {
+        name: 'submitBtn',
+        type: 'button',
+        value: 'REGISTER',
+    })
 
 
